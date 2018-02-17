@@ -457,7 +457,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: ee240000
     m_LastClickedID: 9454
-    m_ExpandedIDs: 6c2a0000782a0000882a00009c2a0000502b00009e2b0000ae2b0000122c0000b62c0000502d00008e2d0000402e0000cc2e0000
+    m_ExpandedIDs: 6a2a0000762a0000862a00009a2a00004e2b00009c2b0000ac2b0000102c0000b42c00004e2d00008c2d00003e2e0000ca2e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -482,10 +482,10 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-    scrollPos: {x: 0, y: 132}
+    scrollPos: {x: 0, y: 824}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 6c2a0000782a0000882a00009c2a0000502b00009e2b0000ae2b0000122c0000b62c0000502d00008e2d0000402e0000cc2e0000
+    m_ExpandedIDs: 6a2a0000762a0000862a00009a2a00004e2b00009c2b0000ac2b0000102c0000b42c00004e2d00008c2d00003e2e0000ca2e0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -723,9 +723,9 @@ MonoBehaviour:
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 
+    m_SelectedIDs: a82b0000
     m_LastClickedID: 0
-    m_ExpandedIDs: 9efbffff000000004e2f00006c2f0000aa300000
+    m_ExpandedIDs: 9efbffff00000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 

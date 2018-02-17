@@ -4453,6 +4453,7 @@ MonoBehaviour:
   timeBetweenBullets: 0.12
   range: 100
   faceLight: {fileID: 786925231}
+  RightJoystickScriptRef: {fileID: 440776875}
 --- !u!120 &2072215073
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -4691,7 +4692,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: -593142088
+  randomSeed: 1377997571
   InitialModule:
     serializedVersion: 3
     enabled: 1

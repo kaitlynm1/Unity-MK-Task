@@ -82,7 +82,7 @@ namespace UnityStandardAssets.CrossPlatformInput
                 // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
                 if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
                 {
-                    Debug.Log("Allow direction change");
+                    //Debug.Log("Allow direction change");
                     // Direction code change here
                     m_OpposingHVirtualAxis.Update(-delta.x); // Oppsite joystick input axis update
                 }
@@ -95,7 +95,7 @@ namespace UnityStandardAssets.CrossPlatformInput
                 // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
                 if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
                 {
-                    Debug.Log("Allow direction change");
+                    //Debug.Log("Allow direction change");
                     // Direction code change here
                     m_OpposingVVirtualAxis.Update(delta.y); // Oppsite joystick input axis update
                 }
@@ -136,7 +136,7 @@ namespace UnityStandardAssets.CrossPlatformInput
                 if (ID == JoystickID.RightShootingDirection && RightStickActive == false)
                 {
                     RightStickActive = true;
-                    Debug.Log(RightStickActive);
+                    //Debug.Log(RightStickActive);
                 }
             }
 
@@ -150,7 +150,7 @@ namespace UnityStandardAssets.CrossPlatformInput
                 if (ID == JoystickID.RightShootingDirection && RightStickActive == false)
                 {
                     RightStickActive = true;
-                    Debug.Log(RightStickActive);
+                    //Debug.Log(RightStickActive);
                 }
             }
             // Clamp the joystick to a circular magnitude rather than the square, now takes all directions into consideration to clamp from centre (what delta Mathf lines where originally doing above). 
@@ -169,12 +169,12 @@ namespace UnityStandardAssets.CrossPlatformInput
             if (ID == JoystickID.RightShootingDirection)
             {
                 RightStickActive = false;
-                Debug.Log(RightStickActive);
+                //Debug.Log(RightStickActive);
             }
 
 		}
 
-
+        // Called when player lets go of this joystick, return to center no current input state and reset active right joystick boolean to false
 		public void OnPointerDown(PointerEventData data) { }
 
 		void OnDisable()
