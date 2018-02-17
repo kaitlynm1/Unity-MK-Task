@@ -32,6 +32,10 @@ namespace UnityStandardAssets.CrossPlatformInput
 
         public Joystick RightJoyStickScriptRef;
 
+        // Change Method of getting this later
+        public GameObject Player;
+        CompleteProject.PlayerMovement PlayerMoveScriptRef;
+
         bool RightStickActive = false;
 
         Vector3 m_StartPos;
@@ -48,6 +52,12 @@ namespace UnityStandardAssets.CrossPlatformInput
         void Start()
         {
             m_StartPos = transform.position;
+
+            // Get Player Movement script off Player gameobject
+            PlayerMoveScriptRef = Player.GetComponent<CompleteProject.PlayerMovement>();
+
+            if (PlayerMoveScriptRef == null)
+                Debug.Log("PlayerMoveScript error: Null");
         }
 
 		void UpdateVirtualAxes(Vector3 value)
@@ -107,6 +117,8 @@ namespace UnityStandardAssets.CrossPlatformInput
                 if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
                 {
                     Debug.Log("Allow direction change");
+                    // Direction code change here
+                    PlayerMoveScriptRef.Turning();
                 }
             }
 
@@ -128,6 +140,7 @@ namespace UnityStandardAssets.CrossPlatformInput
                 {
                     Debug.Log("Allow direction change");
                     // Direction code change here
+                    PlayerMoveScriptRef.Turning();
                 }
             }
             // Clamp the joystick to a circular magnitude rather than the square, now takes all directions into consideration to clamp from centre (what delta Mathf lines where originally doing above). 
