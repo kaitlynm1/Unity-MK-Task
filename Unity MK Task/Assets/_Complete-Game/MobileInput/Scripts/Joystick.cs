@@ -44,7 +44,10 @@ namespace UnityStandardAssets.CrossPlatformInput
 		CrossPlatformInputManager.VirtualAxis m_HorizontalVirtualAxis; // Reference to the joystick in the cross platform input
 		CrossPlatformInputManager.VirtualAxis m_VerticalVirtualAxis; // Reference to the joystick in the cross platform input
 
-		void OnEnable()
+        CrossPlatformInputManager.VirtualAxis m_OpposingHVirtualAxis;
+        CrossPlatformInputManager.VirtualAxis m_OpposingVVirtualAxis;
+
+        void OnEnable()
 		{
 			CreateVirtualAxes();
 		}
@@ -58,6 +61,13 @@ namespace UnityStandardAssets.CrossPlatformInput
 
             if (PlayerMoveScriptRef == null)
                 Debug.Log("PlayerMoveScript error: Null");
+
+            // Setting opposing joystick virtual axis references
+            if (ID == JoystickID.LeftMovement)
+            {
+                m_OpposingHVirtualAxis = RightJoyStickScriptRef.m_HorizontalVirtualAxis;
+                m_OpposingVVirtualAxis = RightJoyStickScriptRef.m_VerticalVirtualAxis;
+            }
         }
 
 		void UpdateVirtualAxes(Vector3 value)
@@ -68,11 +78,27 @@ namespace UnityStandardAssets.CrossPlatformInput
 			if (m_UseX)
 			{
 				m_HorizontalVirtualAxis.Update(-delta.x);
+
+                // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
+                if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
+                {
+                    Debug.Log("Allow direction change");
+                    // Direction code change here
+                    m_OpposingHVirtualAxis.Update(-delta.x); // Oppsite joystick input axis update
+                }
 			}
 
 			if (m_UseY)
 			{
 				m_VerticalVirtualAxis.Update(delta.y);
+
+                // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
+                if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
+                {
+                    Debug.Log("Allow direction change");
+                    // Direction code change here
+                    m_OpposingVVirtualAxis.Update(delta.y); // Oppsite joystick input axis update
+                }
             }
 		}
 
@@ -112,14 +138,6 @@ namespace UnityStandardAssets.CrossPlatformInput
                     RightStickActive = true;
                     Debug.Log(RightStickActive);
                 }
-
-                // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
-                if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
-                {
-                    Debug.Log("Allow direction change");
-                    // Direction code change here
-                    PlayerMoveScriptRef.Turning();
-                }
             }
 
 			if (m_UseY)
@@ -133,14 +151,6 @@ namespace UnityStandardAssets.CrossPlatformInput
                 {
                     RightStickActive = true;
                     Debug.Log(RightStickActive);
-                }
-
-                // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
-                if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
-                {
-                    Debug.Log("Allow direction change");
-                    // Direction code change here
-                    PlayerMoveScriptRef.Turning();
                 }
             }
             // Clamp the joystick to a circular magnitude rather than the square, now takes all directions into consideration to clamp from centre (what delta Mathf lines where originally doing above). 

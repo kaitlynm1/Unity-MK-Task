@@ -1374,9 +1374,8 @@ MonoBehaviour:
   axesToUse: 0
   horizontalAxisName: Mouse X
   verticalAxisName: Mouse Y
-  RightJoyStickScriptRef: {fileID: 0}
-  Player: {fileID: 0}
-  PlayerMoveScriptRef: {fileID: 0}
+  RightJoyStickScriptRef: {fileID: 440776875}
+  Player: {fileID: 1641232234}
 --- !u!114 &440776876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3390,7 +3389,6 @@ MonoBehaviour:
   verticalAxisName: Vertical
   RightJoyStickScriptRef: {fileID: 440776875}
   Player: {fileID: 1641232234}
-  PlayerMoveScriptRef: {fileID: 0}
 --- !u!114 &1559374384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4607,7 +4605,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
   spreadCustomCurve:
     serializedVersion: 2
     m_Curve:
@@ -4631,7 +4629,7 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
-    m_RotationOrder: 4
+    m_RotationOrder: 0
 --- !u!198 &2072215075
 ParticleSystem:
   m_ObjectHideFlags: 0
@@ -4693,7 +4691,7 @@ ParticleSystem:
   moveWithTransform: 0
   moveWithCustomTransform: {fileID: 0}
   scalingMode: 2
-  randomSeed: 0
+  randomSeed: -593142088
   InitialModule:
     serializedVersion: 3
     enabled: 1
