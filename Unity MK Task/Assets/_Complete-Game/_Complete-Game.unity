@@ -1298,7 +1298,7 @@ MonoBehaviour:
   axesToUse: 0
   horizontalAxisName: Mouse X
   verticalAxisName: Mouse Y
-  RightJoyStickRef: {fileID: 0}
+  RightJoyStickScriptRef: {fileID: 0}
 --- !u!114 &440776876
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3168,7 +3168,7 @@ MonoBehaviour:
   axesToUse: 0
   horizontalAxisName: Horizontal
   verticalAxisName: Vertical
-  RightJoyStickRef: {fileID: 440776873}
+  RightJoyStickScriptRef: {fileID: 440776875}
 --- !u!114 &1559374384
 MonoBehaviour:
   m_ObjectHideFlags: 0

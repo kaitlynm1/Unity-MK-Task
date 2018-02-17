@@ -30,7 +30,9 @@ namespace UnityStandardAssets.CrossPlatformInput
         string opposingHAxisName = "Mouse X"; // For use of left stick when right stick isn't in use
         string opposingVAxisName = "Mouse Y"; // For use of left stick when right stick isn't in use
 
-        public GameObject RightJoyStickRef;
+        public Joystick RightJoyStickScriptRef;
+
+        bool RightStickActive = false;
 
         Vector3 m_StartPos;
 		bool m_UseX; // Toggle for using the x axis
@@ -61,7 +63,7 @@ namespace UnityStandardAssets.CrossPlatformInput
 			if (m_UseY)
 			{
 				m_VerticalVirtualAxis.Update(delta.y);
-			}
+            }
 		}
 
 		void CreateVirtualAxes()
@@ -93,25 +95,60 @@ namespace UnityStandardAssets.CrossPlatformInput
 				int delta = (int)(data.position.x - m_StartPos.x);
 				//delta = Mathf.Clamp(delta, - MovementRange, MovementRange);
 				newPos.x = delta;
-			}
+
+                // If Right Stick -> Change boolean to active
+                if (ID == JoystickID.RightShootingDirection && RightStickActive == false)
+                {
+                    RightStickActive = true;
+                    Debug.Log(RightStickActive);
+                }
+
+                // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
+                if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
+                {
+                    Debug.Log("Allow direction change");
+                }
+            }
 
 			if (m_UseY)
 			{
 				int delta = (int)(data.position.y - m_StartPos.y);
 				//delta = Mathf.Clamp(delta, -MovementRange, MovementRange);
 				newPos.y = delta;
-			}
+
+                // If Right Stick -> Change boolean to active
+                if (ID == JoystickID.RightShootingDirection && RightStickActive == false)
+                {
+                    RightStickActive = true;
+                    Debug.Log(RightStickActive);
+                }
+
+                // If this script is Left Stick AND RightStick is inactive -> Allow change on opposing axis
+                if (ID == JoystickID.LeftMovement && RightJoyStickScriptRef.IsRightAxisActive() == false)
+                {
+                    Debug.Log("Allow direction change");
+                    // Direction code change here
+                }
+            }
             // Clamp the joystick to a circular magnitude rather than the square, now takes all directions into consideration to clamp from centre (what delta Mathf lines where originally doing above). 
             // new position = Clamp between ( position vector , Max Movement Range ) + starting position
 			transform.position = Vector3.ClampMagnitude( new Vector3(newPos.x, newPos.y, newPos.z), MovementRange) + m_StartPos;
 			UpdateVirtualAxes(transform.position);
 		}
 
-
+        
 		public void OnPointerUp(PointerEventData data)
 		{
 			transform.position = m_StartPos;
 			UpdateVirtualAxes(m_StartPos);
+
+            // When player lets go of the joystick, if it is on the right shooting direction joystick reset the active boolean
+            if (ID == JoystickID.RightShootingDirection)
+            {
+                RightStickActive = false;
+                Debug.Log(RightStickActive);
+            }
+
 		}
 
 
@@ -129,5 +166,12 @@ namespace UnityStandardAssets.CrossPlatformInput
 				m_VerticalVirtualAxis.Remove();
 			}
 		}
-	}
+    
+        // Returns boolean to opposing Joystick script that called it (Left will call function to check Right Joystick if active)
+        public bool IsRightAxisActive ()
+        {
+            return RightStickActive;
+        }
+
+    }
 }
